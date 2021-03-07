@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% block title%}
+    Finance4india | Edit blog
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<h1  class="font-weight-bold">Delete Blog..</h1>
+<h3> <ul><li>{{ blog.title }}</li></ul> </h3>
+<div class="container-fluid">
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token%}
+            <strong>Are you sure?</strong><br>
+            <button class="btn btn-dark" type="submit">Delete</button>
+        </form>
+        
+    </div>
+
+</div>
+    
+
+
+{% endblock %}
+

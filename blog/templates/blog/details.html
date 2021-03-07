@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Finance4india | {{ blog.title_tag }}
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ blog.title }}</h2>
+<small>By : Shubham - {{ blog.created_at }}<a href="{% url 'editpost' blog.pk %}">(edit)</a> </small>
+
+<h2>{{ blog.description }}</h2>
+
+<a href='{% url "home" %}' style="text-decoration: none;">
+<button class="btn btn-primary" name="back">Back</button>
+</a>
+{% endblock %}

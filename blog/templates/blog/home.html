@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h1 id="blogtitle" class="font-weight-bold text-center">Blog</h1>
+
+<h3 class="text-center mb-5">Finance4india has written {{ object_list.count }} blog{{ object_list.count|pluralize }}</h3>
+
+{% for Blog in object_list %}
+<div class="row justify-content-center my-3">
+  <div class="col-md-10">
+    
+      <h2><a href='{% url "details" Blog.pk %}'>{{ Blog.title }}</a></h2> -<a href='{% url "editpost" Blog.pk %}'>Edit</a>
+      -<a href='{% url "deletepost" Blog.pk %}'>Delete</a>
+      
+    <h5 class="text-muted">{{ Blog.created_at|date:'M d Y'|upper }}</h5>
+    <h4>{{ Blog.description|truncatechars:100 }}</h4>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+

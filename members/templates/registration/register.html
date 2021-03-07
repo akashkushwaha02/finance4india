@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% block title%}
+    Finance4india | Register
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<h1  class="font-weight-bold">Register</h1>
+
+<div class="container-fluid">
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token%}
+            {{ form.as_p}}
+            <button class="btn btn-dark" type="submit">Register</button>
+        </form>
+    </div>
+
+</div>
+    
+
+
+{% endblock %}
+
