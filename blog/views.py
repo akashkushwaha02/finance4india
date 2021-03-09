@@ -11,8 +11,8 @@ from django.urls import reverse_lazy
 #     return render(request,'blog/home.html')
 
 def CategoryView(request,cat):
-    category_posts = Blog.objects.filter(category=cat)
-    return render(request,'blog/category.html',{'cat':cat.title ,'category_posts':category_posts})
+    category_posts = Blog.objects.filter(category=cat.replace('-',' '))
+    return render(request,'blog/category.html',{'cat':cat.title().replace('-',' ') ,'category_posts':category_posts})
 
 class HomeView(ListView):
     model = Blog
