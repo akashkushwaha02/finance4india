@@ -9,10 +9,9 @@ class BlogCategory(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name +' | '
+        return self.name +' '
 
-    def get_absolute_url(self):
-        #return reverse('details', args=(str(self.id)))
+    def get_absolute_url(self):    
         return reverse('home')
 
 
@@ -26,7 +25,7 @@ class Blog(models.Model):
     category = models.CharField(max_length=100,default='uncategorized')
 
     def __str__(self):
-        return self.title +' | '
+        return self.title +' '
 
     def get_absolute_url(self):
         #return reverse('details', args=(str(self.id)))

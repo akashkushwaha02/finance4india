@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block title%}
-    Finance4india | add blog
+    Finance4india | add category
 {% endblock %}
 
 {% load static %}
@@ -8,14 +8,14 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1  class="font-weight-bold">Add Blog</h1>
+    <h1  class="font-weight-bold">Add Category</h1>
 
     <div class="container-fluid">
         <div class="form-group">
             <form method="POST">
                 {% csrf_token%}
-                {{ form.as_p}}
-                <button class="btn btn-dark" type="submit">Add</button>
+                {{ form.as_p }}
+                <button class="btn btn-dark" type="submit" >Add</button>
             </form>
         </div>
 

@@ -10,12 +10,12 @@
 
 {% for Blog in object_list %}
 <div class="row justify-content-center my-3">
-  <div class="col-md-10">
-    
+  <div class="col-md-10">    
       <h2><a href='{% url "details" Blog.pk %}'>{{ Blog.title }}</a></h2>
+      - <a href='{% url "category" Blog.category %}'>{{ Blog.category }}</a>
       {% if user.is_authenticated %}
-      -<a href='{% url "editpost" Blog.pk %}'>Edit</a>
-      -<a href='{% url "deletepost" Blog.pk %}'>Delete</a>
+      -<a href='{% url "editpost" Blog.pk %}'>(Edit)</a>
+      -<a href='{% url "deletepost" Blog.pk %}'>(Delete)</a>
       {% endif %}
     <h6 class="text-muted">{{ Blog.created_at|date:'M d Y'|upper }}</h6>
     <h4>{{ Blog.description|truncatechars:100 }}</h4>

@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% if category_posts %}
+<h1 id="blogtitle" class="font-weight-bold text-center">{{cat}}  Category Post</h1>
+    {%for category in category_posts%}
+        
+        <div class="row justify-content-center my-3">
+        <div class="col-md-10">
+            
+            <h2><a href='{% url "details" category.pk %}'>{{ category.title }}</a></h2>
+            - {{ category.category }}
+            {% if user.is_authenticated %}
+            -<a href='{% url "editpost" category.pk %}'>(Edit)</a>
+            -<a href='{% url "deletepost" category.pk %}'>(Delete)</a>
+            {% endif %}
+            <h6 class="text-muted">{{ category.created_at|date:'M d Y'|upper }}</h6>            
+        </div>
+        </div>
+    {% endfor%}
+{% else %}
+<h1> Sorry this psot ddoes not exist</h1>
+{% endif %}
+{% endblock %}
+

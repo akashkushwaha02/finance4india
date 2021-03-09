@@ -2,13 +2,17 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Blog
 from django.views.generic import ListView,DetailView, CreateView,UpdateView,DeleteView
-from .models import Blog
+from .models import Blog,BlogCategory
 from .forms import BlogForm,UpdateBlogForm
 from django.urls import reverse_lazy
 # Create your views here.
 
 # def home(request):        
 #     return render(request,'blog/home.html')
+
+def CategoryView(request,cat):
+    category_posts = Blog.objects.filter(category=cat)
+    return render(request,'blog/category.html',{'cat':cat.title ,'category_posts':category_posts})
 
 class HomeView(ListView):
     model = Blog
@@ -24,6 +28,12 @@ class CreatBlogView(CreateView):
     form_class = BlogForm
     template_name = 'blog/addPost.html'
     #fields = ('title','title_tag','author','description')
+
+class AddCategoryView(CreateView):
+    model = BlogCategory 
+    template_name = 'blog/addCategory.html'
+    fields = '__all__'
+
 
 class UpdateBlogView(UpdateView):
     model = Blog
