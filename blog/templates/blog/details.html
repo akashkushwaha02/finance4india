@@ -21,4 +21,11 @@
 <a href='{% url "home" %}' style="text-decoration: none;">
 <button class="btn btn-primary" name="back">Back</button>
 </a>
+<br/> <br />
+
+<form method="POST" action="{% url 'like_post' blog.pk %}">
+    {% csrf_token %}
+
+    <button>Like </button>
+</form>
 {% endblock %}
