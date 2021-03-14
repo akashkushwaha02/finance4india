@@ -7,9 +7,13 @@
 {% block content %}
 
 <h2>{{ blog.title }}</h2>
-<small>By : {{ blog.author }} - {{ blog.created_at }}
+<small>By : {{ blog.author }} -
+    
+     {{ blog.created_at }}
     {% if user.is_authenticated %}
+        {% if user.id == blog.author.id  %}
         <a href="{% url 'editpost' blog.pk %}">(edit)</a> </small>
+        {% endif %}
     {% endif %}
 
 <h4>{{ blog.description|safe }}</h4>
