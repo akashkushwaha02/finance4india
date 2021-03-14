@@ -23,6 +23,7 @@ class Blog(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='blog/images',blank=True,null=True)
     category = models.CharField(max_length=100,default='uncategorized')
+    likes = models.ManyToManyField(User,related_name='blog_post')
 
     def __str__(self):
         return self.title +' '
