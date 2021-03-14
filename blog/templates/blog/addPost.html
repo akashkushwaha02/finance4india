@@ -18,9 +18,16 @@
                 <button class="btn btn-dark" type="submit">Add</button>
             </form>
         </div>
-
     </div>
-    
+    <script>
+        var author = "{{ user.id }}";
+        document.getElementById('author_name').value = author;
+
+
+    </script>
+
+
+
 {% else %}
     <h1>You are not eligible to see this post.</h1>
 
