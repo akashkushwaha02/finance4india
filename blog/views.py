@@ -1,14 +1,21 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,get_object_or_404
+from django.http import HttpResponse,HttpResponseRedirect
 from .models import Blog
 from django.views.generic import ListView,DetailView, CreateView,UpdateView,DeleteView
 from .models import Blog,BlogCategory
 from .forms import BlogForm,UpdateBlogForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 # Create your views here.
 
 # def home(request):        
 #     return render(request,'blog/home.html')
+
+def LikeView(request,pk):
+    post = get_object_or_404(Blog,id=request.POST.get('blog_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('details',args=[str(pk)]))
+
+
 
 def CategoryView(request,cat):
     category_posts = Blog.objects.filter(category=cat.replace('-',' '))

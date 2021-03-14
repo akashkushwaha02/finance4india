@@ -26,6 +26,6 @@
 <form method="POST" action="{% url 'like_post' blog.pk %}">
     {% csrf_token %}
 
-    <button>Like </button>
+    <button type="submit" name="blog_id" class="btn btn-primary btn-sm" value="{{ blog.id }}">Like </button>
 </form>
 {% endblock %}
