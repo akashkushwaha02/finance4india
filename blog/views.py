@@ -16,7 +16,6 @@ def LikeView(request,pk):
     return HttpResponseRedirect(reverse('details',args=[str(pk)]))
 
 
-
 def CategoryView(request,cat):
     category_posts = Blog.objects.filter(category=cat.replace('-',' '))
     return render(request,'blog/category.html',{'cat':cat.title().replace('-',' ') ,'category_posts':category_posts})
