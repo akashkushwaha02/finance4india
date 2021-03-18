@@ -25,6 +25,9 @@ class Blog(models.Model):
     category = models.CharField(max_length=100,default='uncategorized')
     likes = models.ManyToManyField(User,related_name='blog_post')
 
+    def total_like(self):
+        return self.likes.count()
+
     def __str__(self):
         return self.title +' '
 

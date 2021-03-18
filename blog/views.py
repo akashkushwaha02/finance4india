@@ -25,9 +25,23 @@ class HomeView(ListView):
     template_name = 'blog/home.html'
     ordering = ['-created_at']
 
+
+    def get_context_data(self,*args,**kwargs):
+        cat_menu = BlogCategory.objects.all()
+        context = super(HomeView,self).get_context_data(*args,**kwargs)
+        context['cat_menu'] = cat_menu
+        return context
+
 class ArticleDetailView(DetailView):
     model = Blog
     template_name = 'blog/details.html'
+
+    def get_context_data(self,*args,**kwargs):
+        cat_menu = BlogCategory.objects.all()
+        context = super(ArticleDetailView,self).get_context_data(*args,**kwargs)
+        context['cat_menu'] = cat_menu
+        return context
+
 
 class CreatBlogView(CreateView):
     model = Blog 
