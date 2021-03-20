@@ -20,11 +20,14 @@ def CategoryView(request,cat):
     category_posts = Blog.objects.filter(category=cat.replace('-',' '))
     return render(request,'blog/category.html',{'cat':cat.title().replace('-',' ') ,'category_posts':category_posts})
 
+def CategoryListView(request):
+    cat_menu_list = BlogCategory.objects.all()
+    return render(request,'blog/category_list.html',{'cat_menu_list':cat_menu_list})
+
 class HomeView(ListView):
     model = Blog
     template_name = 'blog/home.html'
     ordering = ['-created_at']
-
 
     def get_context_data(self,*args,**kwargs):
         cat_menu = BlogCategory.objects.all()
@@ -39,7 +42,10 @@ class ArticleDetailView(DetailView):
     def get_context_data(self,*args,**kwargs):
         cat_menu = BlogCategory.objects.all()
         context = super(ArticleDetailView,self).get_context_data(*args,**kwargs)
+        stuff = get_object_or_404(Blog,id=self.kwargs['pk'])
+        total_likes = stuff.total_likes()
         context['cat_menu'] = cat_menu
+        context['total_likes'] = total_likes
         return context
 
 

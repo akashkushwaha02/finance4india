@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
-from .views import HomeView,ArticleDetailView,CreatBlogView,UpdateBlogView,DeleteBlogView, AddCategoryView,LikeView
+from .views import HomeView,ArticleDetailView,CreatBlogView,UpdateBlogView,DeleteBlogView, AddCategoryView,LikeView,CategoryListView
 
 urlpatterns = [
     #path('',views.home,name='home'),    
@@ -15,6 +15,7 @@ urlpatterns = [
     path('details/<int:pk>/delete/',DeleteBlogView.as_view(),name='deletepost'),
     path('category/<str:cat>/',views.CategoryView,name='category'),
     path('like/<int:pk>/',views.LikeView,name='like_post'),
+    path('category-list/',views.CategoryListView,name='category_list'),
     
 ]
 

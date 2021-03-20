@@ -1,31 +1,32 @@
-{% extends 'blog/base.html' %}
-
-{% block title %}
-    Finance4india | {{ blog.title_tag }}
-{% endblock %}
-
-{% block content %}
+{% extends 'blog/base.html' %} {% block title %} Finance4india | {{
+blog.title_tag }} {% endblock %} {% block content %}
 
 <h2>{{ blog.title }}</h2>
-<small>By : {{ blog.author }} -
-    
-     {{ blog.created_at }}
-    {% if user.is_authenticated %}
-        {% if user.id == blog.author.id  %}
-        <a href="{% url 'editpost' blog.pk %}">(edit)</a> </small>
-        {% endif %}
-    {% endif %}
+<small
+  >By : {{ blog.author }} - {{ blog.created_at }} {% if user.is_authenticated %}
+  {% if user.id == blog.author.id %}
+  <a href="{% url 'editpost' blog.pk %}">(edit)</a>
+</small>
+{% endif %} {% endif %}
 
 <h4>{{ blog.description|safe }}</h4>
 
-<a href='{% url "home" %}' style="text-decoration: none;">
-<button class="btn btn-primary" name="back">Back</button>
+<a href='{% url "home" %}' style="text-decoration: none">
+  <button class="btn btn-primary" name="back">Back</button>
 </a>
-<br/> <br />
+<br />
+<br />
 
 <form method="POST" action="{% url 'like_post' blog.pk %}">
-    {% csrf_token %}
+  {% csrf_token %}
 
-    <button type="submit" name="blog_id" class="btn btn-primary btn-sm" value="{{ blog.id }}">Like </button>
+  <button
+    type="submit"
+    name="blog_id"
+    class="btn btn-primary btn-sm"
+    value="{{ blog.id }}"
+  >
+    Like</button
+  >-{{ total_likes }} like
 </form>
 {% endblock %}
